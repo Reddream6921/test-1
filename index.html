@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSafe | Flood Awareness & Safety</title>
+   
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logoforIct.png">
+ 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+ 
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #203040;
+            background-color: #f4f9fc;
+        }
+ 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+ 
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #073b5c;
+            color: white;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+ 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+ 
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+        }
+ 
+        .logo span {
+            color: #64d8f2;
+        }
+ 
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+ 
+        nav a {
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+ 
+        nav a:hover, .active {
+            color: #64d8f2;
+        }
+ 
+        .hero {
+            min-height: 500px;
+            padding: 90px 8%;
+            display: flex;
+            align-items: center;
+            color: white;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(3, 35, 57, 0.92),
+                    rgba(3, 35, 57, 0.48)
+                ),
+                url("https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1800&q=85")
+                center/cover;
+        }
+ 
+        .hero-content {
+            max-width: 650px;
+        }
+ 
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+ 
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 28px;
+        }
+ 
+        .btn {
+            display: inline-block;
+            padding: 13px 24px;
+            margin: 5px 8px 5px 0;
+            border-radius: 6px;
+            font-weight: bold;
+            background: #16a5d5;
+            color: white;
+            transition: 0.3s;
+        }
+ 
+        .btn:hover {
+            background: #087da9;
+            transform: translateY(-2px);
+        }
+ 
+        .btn-secondary {
+            background: white;
+            color: #073b5c;
+        }
+ 
+        .btn-secondary:hover {
+            background: #e3f4fa;
+        }
+ 
+        section {
+            padding: 70px 8%;
+        }
+ 
+        .section-heading {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+ 
+        .section-heading h2 {
+            font-size: 34px;
+            color: #073b5c;
+            margin-bottom: 12px;
+        }
+ 
+        .section-heading p {
+            color: #596c7b;
+        }
+ 
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+ 
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 40, 70, 0.08);
+            border-bottom: 4px solid #16a5d5;
+            transition: transform 0.3s;
+        }
+ 
+        .card:hover {
+            transform: translateY(-5px);
+        }
+ 
+        .card .icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+ 
+        .card h3 {
+            color: #073b5c;
+            margin-bottom: 12px;
+        }
+ 
+        .about {
+            background: #e5f4fa;
+        }
+ 
+        .about-content {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+ 
+        .about-content h2 {
+            color: #073b5c;
+            font-size: 34px;
+            margin-bottom: 18px;
+        }
+ 
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+ 
+        .safety-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            border-top: 5px solid #16a5d5;
+            box-shadow: 0 5px 18px rgba(0, 40, 70, 0.08);
+        }
+ 
+        .safety-card h3 {
+            color: #073b5c;
+            margin-bottom: 15px;
+        }
+ 
+        .safety-card ul {
+            padding-left: 20px;
+        }
+ 
+        .safety-card li {
+            margin-bottom: 10px;
+        }
+ 
+        .warning {
+            background: #fff2d8;
+            border-left: 6px solid #e99a16;
+            padding: 28px;
+            border-radius: 8px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+ 
+        .warning h2 {
+            color: #8b4b00;
+            margin-bottom: 10px;
+        }
+ 
+        .cta {
+            text-align: center;
+            background: #073b5c;
+            color: white;
+        }
+ 
+        .cta h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+ 
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+ 
+        footer {
+            background: #04283e;
+            color: #d5e5ed;
+            text-align: center;
+            padding: 25px 8%;
+        }
+ 
+        footer p {
+            margin: 5px 0;
+        }
+        /*wanning guide*/
+        .intro-wanning {
+            max-width: 850px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+ 
+        .intro-wanning h2 {
+            color: #164d75;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+ 
+        /* Warning Section */
+        .warning-section {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+ 
+        .section-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+ 
+        .section-heading h2 {
+            color: #164d75;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+ 
+        .section-heading p {
+            color: #607589;
+        }
+ 
+        /* Warning Cards */
+        .warning-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+ 
+        .warning-card {
+            background-color: white;
+            width: 220px;
+            padding: 25px 18px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+            border-top: 6px solid;
+        }
+ 
+        .warning-icon {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+ 
+        .warning-card h3 {
+            color: #183b58;
+            margin-bottom: 5px;
+        }
+ 
+        .warning-card p {
+            color: #657786;
+            margin-bottom: 18px;
+        }
+ 
+        .warning-card button {
+            background-color: #164d75;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+ 
+        .warning-card button:hover {
+            background-color: #267eae;
+        }
+ 
+        .green {
+            border-color: #2eaa68;
+        }
+ 
+        .yellow {
+            border-color: #e9bb25;
+        }
+ 
+        .orange {
+            border-color: #f28c28;
+        }
+ 
+        .red {
+            border-color: #df4545;
+        }
+ 
+        /* Warning Details */
+        .warning-details {
+            background-color: white;
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 6px solid #2583bd;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+            display: none;
+        }
+ 
+        .warning-details h2 {
+            color: #164d75;
+            margin-bottom: 15px;
+        }
+ 
+        .warning-details h3 {
+            color: #164d75;
+            margin: 20px 0 8px;
+        }
+ 
+        .warning-details p {
+            color: #536779;
+            margin-bottom: 10px;
+        }
+ 
+        .warning-details ul {
+            padding-left: 22px;
+            color: #536779;
+        }
+ 
+        .warning-details li {
+            margin-bottom: 9px;
+        }
+ 
+ 
+        @media (max-width: 900px) {
+            .cards,
+            .safety-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+ 
+            header {
+                justify-content: center;
+            }
+ 
+            nav {
+                justify-content: center;
+            }
+        }
+ 
+        @media (max-width: 600px) {
+            .cards,
+            .safety-grid {
+                grid-template-columns: 1fr;
+            }
+ 
+            .hero {
+                padding: 65px 6%;
+            }
+ 
+            section {
+                padding: 50px 6%;
+            }
+ 
+            .section-heading h2,
+            .about-content h2,
+            .cta h2 {
+                font-size: 28px;
+            }
+            .warning-card {
+                width: 100%;
+            }
+ 
+            .warning-details {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+ 
+    <header>
+        <a href="#home" class="logo">
+            <img src="logoforIct.png" alt="FloodSafe" class="logo-img">
+            FloodSafe
+        </a>
+        <nav aria-label="Main navigation">
+            <a href="index.html" class="active">Home</a>
+            <a href="Effect.html">Effects</a>
+            <a href="Safety.html">Safety Guide</a>
+            <a href="Aboutus.html">About Us</a>
+            <a href="Reference.html">References</a>
+        </nav>
+    </header>
+ 
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Understand Floods. Stay Safe. Save Lives.</h1>
+                <p>
+                    Learn what causes floods, understand their effects,
+                    and discover practical ways to protect yourself,
+                    your family, and your community before, during,
+                    and after a flood.
+                </p>
+                <a href="#safety" class="btn">Explore Safety Tips →</a>
+                <a href="#about" class="btn btn-secondary">Learn About Floods</a>
+            </div>
+        </section>
+ 
+        <section id="about" class="about">
+            <div class="about-content">
+                <h2>What Is a Flood?</h2>
+                <p>
+                    A flood occurs when water overflows onto land that
+                    is normally dry. Floods can happen because of heavy
+                    rainfall, overflowing rivers, storm surges, or
+                    drainage systems that cannot handle excess water.
+                    They can develop slowly or occur suddenly, putting
+                    lives, homes, infrastructure, and the environment
+                    at risk.
+                </p>
+                <br>
+                <p>
+                    <strong>
+                        Our mission is to provide clear, reliable,
+                        and accessible flood safety information so
+                        everyone can make informed decisions and
+                        prepare for emergencies.
+                    </strong>
+                </p>
+            </div>
+        </section>
+ 
+        <section id="causes">
+            <div class="section-heading">
+                <h2>What Causes Floods?</h2>
+                <p>Understanding the causes of flooding helps communities prepare for potential disasters.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <h3>Heavy Rainfall</h3>
+                    <p>Prolonged or intense rainfall can overwhelm rivers, drainage systems, and the ground's ability to absorb water.</p>
+                </article>
+                <article class="card">
+                    <h3>Overflowing Rivers</h3>
+                    <p>Rivers may overflow their banks when water levels rise beyond their normal capacity.</p>
+                </article>
+                <article class="card">
+                    <h3>Poor Drainage</h3>
+                    <p>Blocked drains, paved surfaces, and inadequate drainage infrastructure can increase urban flooding.</p>
+                </article>
+            </div>
+        </section>
+ 
+        <section id="effects" class="about">
+            <div class="section-heading">
+                <h2>The Effects of Flooding</h2>
+                <p>Floods can affect people, communities, economies, and the natural environment.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <h3>Property Damage</h3>
+                    <p>Floodwater can destroy homes, roads, bridges, schools, and essential infrastructure.</p>
+                </article>
+                <article class="card">
+                    <h3>Threats to Human Life</h3>
+                    <p>Fast-moving water, drowning hazards, contaminated water, and electrical dangers can seriously threaten human safety.</p>
+                </article>
+                <article class="card">
+                    <h3>Environmental Damage</h3>
+                    <p>Flooding can damage crops, erode soil, contaminate water sources, and disrupt wildlife habitats.</p>
+                </article>
+            </div>
+        </section>
+ 
+        <section id="safety">
+            <div class="section-heading">
+                <h2>Flood Safety Tips</h2>
+                <p>Knowing what to do before, during, and after a flood can reduce risks and help save lives.</p>
+            </div>
+            <div class="safety-grid">
+                <article class="safety-card">
+                    <h3>🟢 Before a Flood</h3>
+                    <ul>
+                        <li>Monitor official weather forecasts and flood warnings.</li>
+                        <li>Prepare an emergency kit with water, food, medicine, and a flashlight.</li>
+                        <li>Know your evacuation routes and safe shelters.</li>
+                        <li>Keep important documents in waterproof bags.</li>
+                        <li>Plan how to contact and reunite with family members.</li>
+                    </ul>
+                </article>
+                <article class="safety-card">
+                    <h3>🔴 During a Flood</h3>
+                    <ul>
+                        <li>Follow official evacuation instructions immediately.</li>
+                        <li>Move to higher ground when flooding threatens.</li>
+                        <li>Never walk, swim, or drive through floodwater.</li>
+                        <li>Stay away from fallen power lines and electrical equipment.</li>
+                        <li>Keep listening to official emergency updates.</li>
+                    </ul>
+                </article>
+                <article class="safety-card">
+                    <h3>🔵 After a Flood</h3>
+                    <ul>
+                        <li>Return home only when authorities say it is safe.</li>
+                        <li>Avoid floodwater that may contain sewage or chemicals.</li>
+                        <li>Do not touch wet electrical equipment until it is safe.</li>
+                        <li>Use safe drinking water and discard contaminated food.</li>
+                        <li>Document property damage and seek assistance if needed.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+        <!---Wanning guide-->
+        <section class="intro-wanning">
+ 
+        <h2>Understand Flood Warning Levels</h2>
+ 
+        <p>
+            Flood warnings help people understand possible dangers
+            and prepare for different situations.
+            Select a warning level below to learn about its meaning
+            and recommended safety actions.
+        </p>
+ 
+    </section>
+ 
+ 
+    <!-- Warning Cards -->
+    <section class="warning-section">
+ 
+        <div class="section-heading">
+            <h2>Four Flood Warning Levels</h2>
+            <p>Click a card to view its safety instructions.</p>
+        </div>
+ 
+        <div class="warning-cards">
+ 
+            <!-- Green Level -->
+            <div class="warning-card green" >
+ 
+                <div class="warning-icon">🟢</div>
+ 
+                <h3>Green Level</h3>
+ 
+                <p>Normal</p>
+ 
+                <button onclick="showWarning('green')">
+                    View Details
+                </button>
+ 
+            </div>
+ 
+            <!-- Yellow Level -->
+            <div class="warning-card yellow">
+ 
+                <div class="warning-icon">🟡</div>
+ 
+                <h3>Yellow Level</h3>
+ 
+                <p>Advisory</p>
+ 
+                <button onclick="showWarning('yellow')">
+                    View Details
+                </button>
+ 
+            </div>
+ 
+            <!-- Orange Level -->
+            <div class="warning-card orange">
+ 
+                <div class="warning-icon">🟠</div>
+ 
+                <h3>Orange Level</h3>
+ 
+                <p>Warning</p>
+ 
+                <button onclick="showWarning('orange')">
+                    View Details
+                </button>
+ 
+            </div>
+ 
+            <!-- Red Level -->
+            <div class="warning-card red">
+ 
+                <div class="warning-icon">🔴</div>
+ 
+                <h3>Red Level</h3>
+ 
+                <p>Emergency</p>
+ 
+                <button onclick="showWarning('red')">
+                    View Details
+                </button>
+ 
+            </div>
+ 
+        </div>
+ 
+        <!-- Dynamic Warning Details -->
+        <div class="warning-details" id="warningDetails">
+ 
+            <h2 id="warningTitle"></h2>
+ 
+            <p id="warningDescription"></p>
+ 
+            <h3>Recommended Safety Actions</h3>
+ 
+            <ul id="warningActions"></ul>
+ 
+        </div>
+ 
+        <section>
+            <div class="warning">
+                <h2>⚠️ Remember: Floodwater Is Dangerous</h2>
+                <p>
+                    Never underestimate floodwater. It may be deeper
+                    or faster-moving than it appears and can hide
+                    dangerous debris, damaged roads, or electrical
+                    hazards. If flooding threatens your area, follow
+                    official emergency instructions and move to safety.
+                </p>
+            </div>
+        </section>
+ 
+        <section class="cta">
+            <h2>Be Prepared. Stay Informed. Stay Safe.</h2>
+            <p>
+                Flood awareness starts with knowledge. Share what
+                you learn with your family, friends, and community
+                to help everyone become better prepared for floods.
+            </p>
+            <a href="#safety" class="btn btn-secondary">Review Safety Tips ↑</a>
+        </section>
+    </main>
+ 
+    <footer>
+        <h3>FloodSafe</h3>
+        <p>Flood Awareness & Safety</p>
+        <p>Copyright © 2026, FloodSafe. All rights reserved.</p>
+    </footer>
+ 
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+ 
+        showWarning("green")
+ 
+        function showWarning(level) {
+ 
+            const details = document.getElementById("warningDetails");
+            const title = document.getElementById("warningTitle");
+            const description = document.getElementById("warningDescription");
+            const actions = document.getElementById("warningActions");
+ 
+            details.style.display = "block";
+ 
+            if (level == "green") {
+ 
+                title.textContent = "🟢 Green Level - Normal";
+ 
+                description.textContent =
+                    "There is no immediate flood threat. However, it is important to stay prepared.";
+ 
+                actions.innerHTML = `
+                    <li>Prepare an emergency kit with essential supplies.</li>
+                    <li>Keep important documents in waterproof bags.</li>
+                    <li>Check drainage systems around your home.</li>
+                    <li>Learn about possible flood risks in your area.</li>
+                `;
+                document.getElementById("warningDetails").style.borderLeft= "7px solid green";
+ 
+            } else if (level == "yellow") {
+ 
+                title.textContent = "🟡 Yellow Level - Advisory";
+ 
+                description.textContent =
+                    "There is a possibility of flooding in some areas. People should stay alert and monitor official updates.";
+ 
+                actions.innerHTML = `
+                    <li>Monitor official weather and flood updates.</li>
+                    <li>Review your family emergency plan.</li>
+                    <li>Check your emergency supplies.</li>
+                    <li>Prepare important belongings for possible evacuation.</li>
+                `;
+                document.getElementById("warningDetails").style.borderLeft= "7px solid goldenrod";
+ 
+            } else if (level == "orange") {
+ 
+                title.textContent = "🟠 Orange Level - Warning";
+ 
+                description.textContent =
+                    "Flooding is expected or may already be happening in affected areas. Conditions may become dangerous.";
+ 
+                actions.innerHTML = `
+                    <li>Prepare to move to a safe place.</li>
+                    <li>Follow evacuation instructions from authorities.</li>
+                    <li>Keep your emergency kit ready.</li>
+                    <li>Help children, elderly people, and vulnerable neighbours.</li>
+                    <li>Stay away from rivers and flood-prone areas.</li>
+                `;
+                document.getElementById("warningDetails").style.borderLeft= "7px solid orange";
+ 
+            } else if (level == "red") {
+ 
+                title.textContent = "🔴 Red Level - Emergency";
+ 
+                description.textContent =
+                    "Severe flooding may create dangerous conditions for people and communities. Immediate safety action may be necessary.";
+ 
+                actions.innerHTML = `
+                    <li>Move to a safe location immediately when instructed by authorities.</li>
+                    <li>Follow official evacuation instructions.</li>
+                    <li>Stay away from floodwater and damaged electrical equipment.</li>
+                    <li>Do not walk, swim, or drive through floodwater.</li>
+                    <li>Help others only when it is safe to do so.</li>
+                `;
+                document.getElementById("warningDetails").style.borderLeft= "7px solid red";
+ 
+            }
+ 
+            details.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest"
+            });
+ 
+        }
+    </script>
+ 
+</body>
+</html>

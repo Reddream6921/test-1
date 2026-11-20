@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloodSafe | Flood Awareness & Safety</title>
+
+    <!-- Favicon Links -->
+    <link rel="icon" type="image/png" sizes="32x32" href="logoforIct.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+ 
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f8fc;
+            color: #20364a;            
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+ 
+         /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #073b5c;
+            color: white;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+ 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+ 
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+        }
+ 
+        .logo span {
+            color: #64d8f2;
+        }
+ 
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+ 
+        nav a {
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+ 
+        nav a:hover, .active {
+            color: #64d8f2;
+        }
+ 
+        .hero {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(3, 35, 57, 0.92),
+                    rgba(3, 35, 57, 0.48)
+                ),
+                url("Flood 1.webp")
+                center/cover;
+            color: white;
+            padding: 85px 8%;
+            text-align: center;
+            min-width:500px;
+        }
+ 
+        .hero h1 {
+            font-size: 43px;
+            margin-bottom: 18px;
+        }
+ 
+        .hero p {
+            font-size: 18px;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+ 
+        .hero button {
+            background: white;
+            color: #073b61;
+            border: none;
+            padding: 14px 25px;
+            margin-top: 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+ 
+        .hero button:hover {
+            background: #dff5fc;
+        }
+ 
+        .guide {
+            padding: 55px 4%;
+            text-align: center;
+        }
+ 
+        .guide h2 {
+            color: #073b61;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+ 
+        .guide > p {
+            color: #5d7285;
+            margin-bottom: 35px;
+        }
+ 
+        .guide-image {
+            width: 100%;
+            max-width: 1100px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        main {
+        width: 80%;
+        margin: 40px auto;
+    }
+    /* Section heading */
+    .heading {
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    .heading h2 {
+        color: #075985;
+        font-size: 27px;
+        margin-bottom: 5px;
+    }
+    .heading p {
+        color: #64748b;
+    }
+    /* Preparation steps */
+    .steps {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin-bottom: 45px;
+    }
+    .step {
+        background-color: white;
+        padding: 22px;
+        border-radius: 12px;
+        width: calc(33.33% - 12px);
+        border: 1px solid #dbe7ec;
+    }
+    .number {
+        background-color: #d9f1ee;
+        color: #087e79;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 19px;
+        margin-bottom: 15px;
+    }
+    .step h3 {
+        color: #075985;
+        margin-bottom: 10px;
+    }
+    .step p {
+        font-size: 14px;
+        color: #526575;
+    }
+    /* Emergency kit */
+    .kit-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        align-items: stretch;
+        margin-bottom: 45px;
+    }
+    .kit-info {
+        flex: 1;
+        min-width: 260px;
+        background-color: #dceff4;
+        padding: 30px;
+        border-radius: 15px;
+    }
+    .kit-info h2 {
+        color: #075985;
+        margin-bottom: 12px;
+    }
+    .kit-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 45px;
+    align-items: stretch;
+    }
+    .kit-photo {
+        flex: 1;
+        min-width: 260px;
+    }
+    .kit-photo img {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+    .kit-list {
+        flex: 1;
+        min-width: 260px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+    }
+    .kit-list h3 {
+        color: #087e79;
+        margin-bottom: 15px;
+    }
+    .kit-list ul {
+        list-style: none;
+    }
+    .kit-list li {
+        padding: 8px 0;
+        border-bottom: 1px solid #e5edf0;
+    }
+    .kit-list li::before {
+        content: "✓ ";
+        color: #087e79;
+        font-weight: bold;
+        margin-right: 8px;
+    }
+    /* Family plan */
+    .family-plan {
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin-bottom: 35px;
+        border-left: 6px solid #0e8790;
+        box-shadow: 0 3px 10px #dddddd;
+    }
+    .family-plan h2 {
+        color: #075985;
+        margin-bottom: 15px;
+    }
+    .family-plan ol {
+        padding-left: 22px;
+    }
+    .family-plan li {
+        padding: 6px 0;
+    }
+    /* Reminder */
+    .reminder {
+        background-color: #fff1d6;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #f3d28d;
+    }
+    .reminder h2 {
+        color: #935b00;
+        margin-bottom: 8px;
+    }
+    .reminder p {
+        color: #674b19;
+    }
+    /* Responsive */
+    @media (max-width: 750px) {
+        .step {
+            width: calc(50% - 9px);
+        }
+ 
+        .intro {
+            padding: 30px;
+        }
+    }
+ 
+    @media (max-width: 500px) {
+        .step {
+            width: 100%;
+        }
+ 
+        .intro h1 {
+            font-size: 28px;
+        }
+    }
+ 
+    /* Check List */
+       
+        /* Checklist Cards */
+        .card {
+            display: inline-block;
+            vertical-align: top;
+            width: 30%;
+            height: 430px;
+            background-color: white;
+            margin: 8px;
+            border-top: 7px solid #249bb5;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #dddddd;
+            text-align: left;
+            overflow: hidden;
+        }
+        .title{/*
+            background-color: #dff4f7;*/
+            color: #249bb5;
+            padding: 10px;
+            margin: 0;
+        }
+        .card h2 {
+            margin-top: 10px;
+            padding: 0 18px;
+            line-height: 1.5;
+        }
+        .task-list {
+            padding: 10px 18px 20px;
+        }
+        .task-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #eeeeee;
+            line-height: 1.5;
+        }
+ 
+        input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            accent-color: #12617e;
+        }
+ 
+        .check-item {
+            cursor: pointer;
+        }
+ 
+        /* Progress Section */
+        .progress-section {
+            background-color: #12617e;
+            color: #12617e;
+            padding: 25px;
+            margin: 30px 8px;
+            border-radius: 15px;
+            border: 2px solid #12617e;
+        }
+ 
+        .progress-heading {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #7ce0e9;
+        }
+ 
+        .progress-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+ 
+        .percentage-box {
+            display: inline-block;
+            background-color: #dff4f7;
+            border: 5px solid #249bb5;
+            width: 130px;
+            height: 110px;
+            border-radius: 50%;
+            padding-top: 20px;
+            box-sizing: border-box;
+            vertical-align: middle;
+            margin: 10px 25px;
+        }
+ 
+        .percentage-box h1 {
+            color: #249bb5;
+            font-size: 30px;
+            margin: 5px;
+        }
+ 
+        .percentage-box p {
+            margin: 0;
+            font-size: 13px;
+        }
+ 
+        .progress-details {
+            display: inline-block;
+            width: 55%;
+            vertical-align: middle;
+            text-align: left;
+        }
+ 
+        .progress-details h3 {
+            color: #249bb5;
+        }
+ 
+        .progress-details progress {
+            width: 100%;
+            height: 20px;
+            accent-color: #12617e;
+        }
+ 
+        .progress-details p {
+            line-height: 1.5;
+        }
+ 
+        .reset-btn {
+            background-color: #249bb5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+ 
+        .reset-btn:hover {
+            background-color: #12617e;
+        }
+ 
+        @media screen and (max-width: 650px) {
+            .progress-details {
+                width: 90%;
+                text-align: center;
+            }
+        }
+        /* Safety Reminder */
+        .reminder {
+            background-color: #fff0cc;
+            border-left: 6px solid #12617e;
+            padding: 18px;
+            margin: 20px 8px;
+            text-align: left;
+            line-height: 1.6;
+            border-radius: 5px;
+        }
+        /* Responsive Design */
+        @media screen and (max-width: 750px) {
+            .card {
+                width: 90%;
+            }
+ 
+            .hero h1 {
+                font-size: 28px;
+            }
+        }
+ 
+ 
+        /*warning*/
+        .warning {
+            background: #fff3d9;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 0 4% 55px;
+            line-height: 1.7;
+        }
+ 
+        .warning h3 {
+            color: #80500b;
+            margin-bottom: 8px;
+        }
+ 
+        footer {
+            background: #062f4e;
+            color: white;
+            text-align: center;
+            padding: 28px;
+        }
+ 
+        @media (max-width: 800px) {
+           
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+ 
+            nav a {
+                margin: 0 8px;
+            }
+ 
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+ 
+    </style>
+</head>
+ 
+<body>
+ 
+    <header>
+        <a href="#home" class="logo">
+            <img src="logoforIct.png" alt="FloodSafe" class="logo-img">
+            FloodSafe
+        </a>
+        <nav aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="Effect.html">Effects</a>
+            <a href="Safety.html" active="active">Safety Guide</a>
+            <a href="Aboutus.html">About Us</a>
+            <a href="Reference.html">References</a>
+        </nav>
+    </header>
+ 
+    <section class="hero" id="home">
+        <h1>Flood Awareness & Safety</h1>
+ 
+        <p>
+            Be prepared. Stay informed. Stay safe.
+            Learn how to protect yourself, your family,
+            and your community from flooding.
+        </p>
+ 
+        <button onclick="scrollToGuide()">
+            Explore Safety Guide
+        </button>
+    </section>
+    <main>
+    <!-- Preparation Steps -->
+    <section>
+        <div class="heading">
+            <h2>5 Important Steps to Prepare for a Flood</h2>
+            <p>Start preparing now to keep your family and home safe.</p>
+        </div>
+ 
+        <div class="steps">
+ 
+            <div class="step">
+                <div class="number">01</div>
+                <h3>Stay Informed</h3>
+                <p>
+                    Check weather forecasts and listen to official
+                    flood warnings. Know the flood risks in your area.
+                </p>
+            </div>
+ 
+            <div class="step">
+                <div class="number">02</div>
+                <h3>Prepare an Emergency Kit</h3>
+                <p>
+                    Keep drinking water, food, medicines, a flashlight,
+                    and other important supplies ready.
+                </p>
+            </div>
+ 
+            <div class="step">
+                <div class="number">03</div>
+                <h3>Protect Important Items</h3>
+                <p>
+                    Put important documents, money, and valuable
+                    belongings in waterproof bags and safe places.
+                </p>
+            </div>
+ 
+            <div class="step">
+                <div class="number">04</div>
+                <h3>Plan a Safe Route</h3>
+                <p>
+                    Identify safe places on higher ground and learn
+                    how to reach them before flooding occurs.
+                </p>
+            </div>
+ 
+            <div class="step">
+                <div class="number">05</div>
+                <h3>Protect Your Home</h3>
+                <p>
+                    Clear drains, move valuable items to higher places,
+                    and use suitable flood protection measures.
+                </p>
+            </div>
+ 
+        </div>
+    </section>
+ 
+    <!-- Emergency Kit -->
+    <section class="kit-section">
+ 
+        <div class="kit-photo">
+            <img src="https://dropinblog.net/img/udxbg3vs/612/4"
+                alt="emergency kit">
+        </div>
+ 
+        <div class="kit-list">
+            <h2>Build Your Emergency Kit</h2>
+ 
+            <p>
+                Prepare essential supplies in advance.
+                Keep your emergency kit somewhere easy to reach.
+            </p>
+ 
+            <ul>
+                <li>Clean drinking water</li>
+                <li>Ready-to-eat food</li>
+                <li>First aid kit and medicines</li>
+                <li>Flashlight and extra batteries</li>
+                <li>Mobile phone and power bank</li>
+                <li>Important documents in waterproof bags</li>
+                <li>Extra clothes and hygiene items</li>
+            </ul>
+        </div>
+ 
+    </section>
+ 
+    <!-- Family Emergency Plan -->
+    <section class="family-plan">
+        <h2>Make a Family Emergency Plan</h2>
+        <p>Talk with your family and decide what to do before a flood.</p>
+ 
+        <ol>
+            <li>Choose a safe meeting place for your family.</li>
+            <li>Know the nearest evacuation locations.</li>
+            <li>Decide how family members will contact each other.</li>
+            <li>Help children, elderly people, and people with disabilities.</li>
+            <li>Keep emergency contact numbers in a safe place.</li>
+        </ol>
+    </section>
+    <!--Check List-->
+    <div class="container">
+        <div class="heading">
+            <h2>Flood Preparedness Checklist</h2>
+            <p>Please check your flood preparedness by completing the checklist below.</p>
+        </div>
+        <!-- Checklist Section -->
+        <div id="checklist">
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="title">
+                    <h2>1. Prepare an Emergency Kit</h2>
+                </div>
+ 
+                <div class="task-list">
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task1">
+                        <label class="check-item" for="task1">Prepare clean drinking water and non-perishable food.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task2">
+                        <label class="check-item" for="task2">Prepare a first-aid kit and essential medicines.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task3">
+                        <label class="check-item" for="task3">Keep flashlights, batteries, and a power bank ready.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task4">
+                        <label class="check-item" for="task4">Store important documents in waterproof bags.</label>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="title">
+                    <h2>2. Make a Family Flood Safety Plan</h2>
+                </div>
+ 
+                <div class="task-list">
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task5">
+                        <label class="check-item" for="task5">Learn about flood-prone areas in your community.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task6">
+                        <label class="check-item" for="task6">Identify safe places on higher ground.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task7">
+                        <label class="check-item" for="task7">Know the local evacuation routes.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task8">
+                        <label class="check-item" for="task8">Make a family emergency communication plan.</label>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="title">
+                    <h2>3. Protect Your Home and Community</h2>
+                </div>
+ 
+                <div class="task-list">
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task9">
+                        <label class="check-item" for="task9">Keep drains and waterways free from rubbish.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task10">
+                        <label class="check-item" for="task10">Move important belongings to higher places.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task11">
+                        <label class="check-item" for="task11">Follow weather forecasts and official flood warnings.</label>
+                    </div>
+ 
+                    <div class="task-row">
+                        <input type="checkbox" class="task" id="task12">
+                        <label class="check-item" for="task12">Share flood safety information with neighbours.</label>
+                    </div>
+ 
+                </div>
+            </div>
+ 
+        </div>
+ 
+        <!-- Preparation Progress Section -->
+        <div class="progress-section">
+ 
+            <div class="progress-heading">
+                <h2>Your Flood Preparedness Report</h2>
+            </div>
+ 
+            <div class="progress-content">
+                <div class="percentage-box">
+                    <h1 id="percentage">0%</h1>
+                    <p>Completed</p>
+                </div>
+ 
+                <div class="progress-details">
+                    <h3>Let's Get Prepared!</h3>
+                    <p id="progressText">0 out of 12 tasks completed.</p>
+                    <progress id="progressBar" value="0" max="12"></progress>
+                    <p id="message">Every preparation step helps protect your family.!</p>
+                    <button class="reset-btn" id="resetButton">&circlearrowright; Start Again </button>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+
+    <section class="warning">
+        <h3>⚠️ Important Safety Reminder</h3>
+ 
+        <p>
+            When flooding threatens, act early.
+            Follow official emergency instructions.
+            Never enter floodwater, even if it appears shallow.
+            Your life is more important than your belongings.
+        </p>
+    </section>
+ 
+</main>
+   
+ 
+    <footer>
+        <h3>FloodSafe</h3>
+        <p>Flood Awareness & Safety</p>
+        <p>Copyright © 2026, FloodSafe. All rights reserved.</p>
+    </footer>
+ 
+    <script>
+        function scrollToGuide() {
+            document.getElementById("guide").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+ 
+        //checklist
+        var tasks = document.querySelectorAll(".task");
+        var progressText = document.getElementById("progressText");
+        var progressBar = document.getElementById("progressBar");
+        var message = document.getElementById("message");
+        var resetButton = document.getElementById("resetButton");
+ 
+ 
+        function updateProgress() {
+            var percentageText = document.getElementById("percentage");
+            var completed = 0;
+ 
+            for (var i = 0; i < tasks.length; i++) {
+ 
+                if (tasks[i].checked) {
+                    completed++;
+                }
+ 
+            }
+ 
+            // Calculate percentage
+            var percentage = Math.round(
+                (completed / tasks.length) * 100
+            );
+ 
+            // Update progress bar
+            progressBar.value = completed;
+            percentageText.textContent = percentage + "%";
+ 
+            // Display result
+            progressText.textContent =
+                "You have completed "  + percentage + "% (" + completed + " out of " + tasks.length + "tasks).";
+ 
+            // Display message
+            if (completed == tasks.length) {
+                message.textContent =
+                    "Excellent! You are well prepared for extreme heat.";
+            }
+            else {
+                message.textContent =
+                    "Keep preparing to stay safe during extreme heat!";
+ 
+            }
+        }
+ 
+        // Detect checkbox changes
+        for (var i = 0; i < tasks.length; i++) {
+            tasks[i].addEventListener("change", updateProgress);
+        }
+ 
+        // Reset checklist
+        resetButton.addEventListener("click", function() {
+ 
+            for (var i = 0; i < tasks.length; i++) {
+                tasks[i].checked = false;
+            }
+            updateProgress();
+ 
+        });
+    </script>
+ 
+</body>
+</html>

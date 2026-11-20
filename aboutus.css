@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #203040;
+    background: #f4f9fc;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #073b5c;
+    color: white;
+    padding: 15px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.logo span {
+    color: #64d8f2;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+    color: #64d8f2;
+}
+
+.page-intro {
+    background:
+        linear-gradient(120deg, rgba(3, 35, 57, 0.96), rgba(7, 59, 92, 0.82)),
+        url("https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    color: white;
+    padding: 85px 8%;
+    text-align: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: #64d8f2;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.page-intro h1 {
+    font-size: clamp(36px, 5vw, 54px);
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+.page-intro p {
+    max-width: 740px;
+    margin: 0 auto 25px;
+    font-size: 18px;
+    color: #e6f3f8;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 23px;
+    border-radius: 6px;
+    font-weight: bold;
+    background: #16a5d5;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #087da9;
+    transform: translateY(-2px);
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    color: #073b5c;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-heading p {
+    color: #596c7b;
+}
+
+/* Original Impact Grid Styles */
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.impact-card {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 40, 70, 0.08);
+    border: 1px solid #e1edf2;
+    border-top: 4px solid #16a5d5;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.impact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 22px rgba(0, 40, 70, 0.13);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.impact-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    background: #e5f4fa;
+    border-radius: 12px;
+    font-size: 27px;
+}
+
+.impact-number {
+    color: #9bb9c8;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.impact-card h3 {
+    color: #073b5c;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.impact-card p {
+    color: #596c7b;
+    font-size: 15px;
+}
+
+/* Team Grid Styles (For About Us) */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.team-card {
+    background: white;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0, 40, 70, 0.08);
+    border: 1px solid #e1edf2;
+    border-top: 4px solid #16a5d5;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 22px rgba(0, 40, 70, 0.13);
+}
+
+.team-img-wrapper {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #16a5d5;
+}
+
+.team-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    color: #073b5c;
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.team-role {
+    color: #16a5d5;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.team-card p {
+    color: #596c7b;
+    font-size: 15px;
+}
+
+/* Original Timeline & Highlight Styles */
+.timeline-section {
+    background: #e5f4fa;
+}
+
+.timeline-grid {
+    max-width: 1050px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.timeline-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border-left: 5px solid #16a5d5;
+    box-shadow: 0 5px 18px rgba(0, 40, 70, 0.07);
+}
+
+.timeline-card h3 {
+    color: #073b5c;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.timeline-card ul {
+    padding-left: 21px;
+    color: #596c7b;
+}
+
+.timeline-card li {
+    margin: 9px 0;
+}
+
+.highlight {
+    max-width: 1050px;
+    margin: 45px auto 0;
+    padding: 25px 28px;
+    background: white;
+    border-radius: 10px;
+    border-left: 5px solid #16a5d5;
+    color: #425b6b;
+    box-shadow: 0 5px 18px rgba(0, 40, 70, 0.06);
+}
+
+.highlight strong {
+    color: #073b5c;
+}
+
+.cta {
+    text-align: center;
+    background: #073b5c;
+    color: white;
+}
+
+.cta h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.cta p {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    color: #e6f3f8;
+}
+
+.cta .btn {
+    margin: 5px;
+    background: white;
+    color: #073b5c;
+}
+
+.cta .btn:hover {
+    background: #e3f4fa;
+}
+
+footer {
+    background: #04283e;
+    color: #d5e5ed;
+    text-align: center;
+    padding: 25px 8%;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+    .impact-grid,
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    header {
+        justify-content: center;
+    }
+
+    nav {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .impact-grid,
+    .team-grid,
+    .timeline-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-intro {
+        padding: 65px 6%;
+    }
+
+    section {
+        padding: 50px 6%;
+    }
+
+    .section-heading h2,
+    .cta h2 {
+        font-size: 27px;
+    }
+}
